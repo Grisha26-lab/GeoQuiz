@@ -25,6 +25,7 @@
             style="?android:attr/buttonBarButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="5dp"
             android:text="@string/true_button" />
 
         <Button
@@ -32,6 +33,7 @@
             style="?android:attr/buttonBarButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
             android:text="@string/false_button" />
 
 
@@ -42,19 +44,25 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <Button
+        <ImageButton
             android:id="@+id/back_button"
             style="?android:attr/buttonBarButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="@string/back" />
+            android:src="@drawable/arrow_left"
+            android:drawablePadding="4dp"
+            android:layout_marginEnd="5dp"
+            android:contentDescription="TODO" />
 
-        <Button
+        <ImageButton
             android:id="@+id/next_button"
             style="?android:attr/buttonBarButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="@string/next" />
+            android:src="@drawable/arrow_right"
+            android:drawablePadding="4dp"
+            android:layout_marginStart="5dp"
+            android:contentDescription="TODO" />
 
     </LinearLayout>
 
