@@ -9,6 +9,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
+import java.lang.Exception
 
 private const val TAG = "MainActivity"
 private const val KEY_INDEX = "index"
@@ -43,7 +44,7 @@ class MainActivity : AppCompatActivity() {
         falseButton = findViewById(R.id.false_button)
         nextButton = findViewById(R.id.next_button)
         backButton = findViewById(R.id.back_button)
-        questionTextView = findViewById(R.id.question_text_view)
+       questionTextView = findViewById(R.id.question_text_view)
 
         trueButton.setOnClickListener {
             checkAnswer(true)
