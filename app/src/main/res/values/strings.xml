@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">GeoQuiz</string>
-    <string name="true_button">true</string>
-    <string name="false_button">false</string>
+    <string name="true_button">Правда</string>
+    <string name="false_button">Не правда</string>
     <string name="correct_toast">Все верно! Вы молодец!</string>
     <string name="incorrect_toast">Упс вы ошиблись!</string>
     <string name="next">next</string>
