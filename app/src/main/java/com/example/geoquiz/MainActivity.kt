@@ -18,9 +18,6 @@ private const val KEY_INDEX = "index"
 class MainActivity : AppCompatActivity() {
 
 
-
-
-
     private val quizViewModel: QuizViewModel by lazy {
         ViewModelProvider(this).get(QuizViewModel::class.java)
     }
@@ -31,22 +28,26 @@ class MainActivity : AppCompatActivity() {
     private lateinit var nextButton: ImageButton
     private lateinit var backButton: ImageButton
     private lateinit var questionTextView: TextView
+    private lateinit var cheatButton: Button
     private var currentResult = 0
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Log.i(TAG,"onSaveInstanceState")
-        savedInstanceState?.putInt(KEY_INDEX,quizViewModel.currentIndex)
+        Log.i(TAG, "onSaveInstanceState")
+        savedInstanceState?.putInt(KEY_INDEX, quizViewModel.currentIndex)
         setContentView(R.layout.activity_main)
 
         trueButton = findViewById(R.id.true_button)
         falseButton = findViewById(R.id.false_button)
         nextButton = findViewById(R.id.next_button)
         backButton = findViewById(R.id.back_button)
-       questionTextView = findViewById(R.id.question_text_view)
+        questionTextView = findViewById(R.id.question_text_view)
+        cheatButton = findViewById(R.id.cheat_button)
+
 
         trueButton.setOnClickListener {
+
             checkAnswer(true)
 
         }
@@ -61,8 +62,9 @@ class MainActivity : AppCompatActivity() {
 
 
         }
+        cheatButton.setOnClickListener {
 
-
+        }
 
         updateQuestion()
     }
