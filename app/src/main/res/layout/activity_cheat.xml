@@ -14,7 +14,7 @@
         android:text="@string/warning_text" />
 
     <TextView
-        android:id="@+id/lox"
+        android:id="@+id/answer_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="24dp"

@@ -1,5 +1,7 @@
 package com.example.geoquiz
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
@@ -11,6 +13,7 @@ import androidx.lifecycle.ViewModelProvider
 
 private const val TAG = "MainActivity"
 private const val KEY_INDEX = "index"
+private const val REQUEST_CODE_CHEATERS = 0
 
 
 class MainActivity : AppCompatActivity() {
@@ -44,6 +47,9 @@ class MainActivity : AppCompatActivity() {
         cheatButton = findViewById(R.id.cheat_button)
 
 
+
+
+
         trueButton.setOnClickListener {
 
             checkAnswer(true)
@@ -63,10 +69,20 @@ class MainActivity : AppCompatActivity() {
         cheatButton.setOnClickListener {
             val answerTrue = quizViewModel.currentQuestionAnswer
             val intent = CheatActivity.newIntent(this@MainActivity, answerTrue)
-            startActivity(intent)
+            startActivityForResult(intent, REQUEST_CODE_CHEATERS)
         }
 
         updateQuestion()
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode != Activity.RESULT_OK) {
+            return
+        }
+        if (requestCode == REQUEST_CODE_CHEATERS) {
+            quizViewModel.isCheater = data?.getBooleanExtra(EXTRA_ANSWER_SHOWN, false) ?: false
+        }
     }
 
     private fun updateQuestion() {
@@ -78,14 +94,12 @@ class MainActivity : AppCompatActivity() {
 
     private fun checkAnswer(userAnswer: Boolean) {
         val correctAnswer = quizViewModel.currentQuestionAnswer
-        val messageAnswer = if (userAnswer == correctAnswer) {
-            currentResult += 10
-            R.string.correct_toast
-
-        } else {
-            R.string.incorrect_toast
+        val messageId = when {
+            quizViewModel.isCheater -> resources.getString(R.string.judgment_toast)
+            userAnswer == correctAnswer -> resources.getString(R.string.incorrect_toasts)
+            else -> resources.getString(R.string.incorrect_toasts)
         }
-        Toast.makeText(this, messageAnswer, Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, messageId, Toast.LENGTH_SHORT).show()
     }
 
 
